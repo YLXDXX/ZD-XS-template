@@ -1,0 +1,104 @@
+\documentclass{XZDX}
+%载入西藏大学本科毕业论文模板
+
+
+%在写作中，自己需要用到的一些宏包
+%在此处导言区加载使用
+%例
+%\usepackage{CJKspace}
+
+
+
+
+\begin{document}
+
+
+
+
+
+%原样输出请用抄录环境（verbatim）
+%行内的直接写 \verb 命令
+
+
+
+%封面信息
+%跟据自己情况填写
+
+
+\Type{本科生毕业论文} %本科生毕业论文 或者 本科生毕业设计
+\YanXi{理学院} %院系
+\ZhuanYe{2015级物理一班} %专业年级
+\TiMu{一种新型的中微子捕获装置} %题目
+\XingMing{王小二} %姓名
+\XueHao{15413100} %学号
+\JiaoShi{厉老师} %指导教师
+\ZhiCheng{教授} %职称
+\ShiJian{2019年5月13日} %完成时间
+
+
+
+
+%封面
+\cover %用于生成封面
+
+
+%郑重声明
+\statement %用于生成声明
+
+
+
+%摘要
+\include{1/中文摘要} 
+\include{1/英文摘要} 
+
+
+
+
+
+%目录
+\mulucreat
+
+
+
+%论文主体部分
+
+\include{1/正文测试} %此文测试用
+
+
+%结论
+%若不需要，请注释相关内容
+\include{1/结论} 
+
+
+
+
+%参考文献
+%参考文献放置位置为 date/refer.bib
+\PrintBibliography
+
+
+
+
+%相关的科研成果目录
+%若不需要，请注释相关内容
+\include{1/相关的科研成果目录}
+
+
+
+%致谢
+\include{1/致谢}
+
+
+
+%附录
+%若不需要，请注释相关内容
+\Appendix %这个命令表示附录开如，勿删
+\include{1/附录A}
+\include{1/附录B}
+
+
+
+
+
+
+\end{document}
