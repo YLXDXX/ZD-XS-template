@@ -433,23 +433,22 @@ contentsname = 目\hspace{2\ccwd}录,
 \bibliography{date/refer.bib}
 \phantomsection %让超链接能够正确链接，一般是加入目录用
 \addcontentsline{toc}{chapter}{参考文献}
+\clearpage
+\ctexset{chapter/numbering=false,} %设置相关科研成果目录和致谢的标题
 }
 
 
-%相关科研成果目录
-\newcommand{\ResearchResult}{
-\chapter*{\texorpdfstring{相关科研成果}{相关科研成果}}
-\phantomsection %让超链接能够正确链接，一般是加入目录用
-\addcontentsline{toc}{chapter}{\texorpdfstring{相关科研成果}{相关科研成果}}
-}
+%相关科研成果目录和致谢的标题也可以手动设置
+%例如
+%\chapter*{\texorpdfstring{致\hspace{2\ccwd}谢}{致谢}}
+%\phantomsection %让超链接能够正确链接，一般是加入目录用
+%\addcontentsline{toc}{chapter}{\texorpdfstring{致谢}{致谢}}
 
 
-%致谢
-\newcommand{\Thinks}{
-\chapter*{\texorpdfstring{致\hspace{2\ccwd}谢}{致谢}}
-\phantomsection %让超链接能够正确链接，一般是加入目录用
-\addcontentsline{toc}{chapter}{\texorpdfstring{致谢}{致谢}}
-}
+
+
+
+
 
 %附录
 \newcommand{\Appendix}{
@@ -459,26 +458,13 @@ contentsname = 目\hspace{2\ccwd}录,
 section = {
 	name = {附,\ },
 	number =\Alph{chapter}\arabic{section},
-	format= \raggedright\zihao{4}\heiti,
-	aftername =,
-	beforeskip=7bp, %0.5*14bp
-	afterskip=7bp, %0.5*14bp
 },
 subsection = {
 	name = {附,\ },
 	number =\Alph{chapter}\arabic{section}.\arabic{subsection},
-	format= \raggedright\zihao{4}\heiti,
-	aftername =,
-	beforeskip=7bp, %0.5*14bp
-	afterskip=7bp, %0.5*14bp
 },
 subsubsection = {
 	name = {附,\ },
 	number =\Alph{chapter}\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
-	format= \raggedright\zihao{4}\heiti,
-	aftername =,
-	beforeskip=7bp, %0.5*14bp
-	afterskip=7bp, %0.5*14bp
-},
-}
+},}
 }
