@@ -378,7 +378,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 {\linespread{1.5}\selectfont %1.5倍行距
 	~\par %空一行
 	#1
-}
+\par}
 
 ~\\ %空一行
 \noindent {\heiti 关键词}： #2
@@ -399,7 +399,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 {\linespread{1.5}\selectfont %1.5倍行距
 	~\par %空一行
 	#1
-}
+\par}
 
 ~\\ %空一行
 \noindent {\textbf{Key words}}： #2 
