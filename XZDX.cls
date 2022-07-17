@@ -205,7 +205,7 @@ subsubsection = {
 	beforeskip=6bp, %0.5*12bp
 	afterskip=6bp, %0.5*12bp
 },
-contentsname = 目\hspace{2\ccwd}录,
+contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英文会自动产生一个空格
 }
 
 
@@ -350,7 +350,7 @@ contentsname = 目\hspace{2\ccwd}录,
 	\songti\zihao{2}
 	~\\
 	~\\ %空二行
-	\textbf{郑\hspace{\ccwd}重\hspace{\ccwd}声\hspace{\ccwd}明}
+	\textbf{郑 \space 重 \space 声 \space 明}
 \end{center}
 
 {\zihao{4}
@@ -373,7 +373,7 @@ contentsname = 目\hspace{2\ccwd}录,
 \begin{center}
 	\heiti\zihao{-2}
 	~\\ %空一行
-	摘\hspace{2\ccwd}要
+	摘\texttt{\char32}要 %这里只要一个空格既可，中英文会自动产生一个空格
 \end{center}
 {\linespread{1.5}\selectfont %1.5倍行距
 	~\par %空一行
