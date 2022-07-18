@@ -439,6 +439,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 \ctexset{chapter/numbering=false,} %设置相关科研成果目录和致谢的标题
 \ctexset{section/numbering=false,} %设置相关科研成果目录和致谢的标题
 \ctexset{subsection/numbering=false,} %设置相关科研成果目录和致谢的标题
+\ctexset{subsubsection/numbering=false,} %设置相关科研成果目录和致谢的标题
 }
 
 
