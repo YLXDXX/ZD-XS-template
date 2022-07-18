@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{XZDX}[shui 西藏大学本科毕业论文模板]
+\ProvidesClass{ZDXS}[shui 西藏大学本科毕业论文模板]
 
 %基本设置
 
@@ -140,11 +140,14 @@
  \RequirePackage{braket} %量子算符宏包 
 \RequirePackage{esint} % various fancy integral symbols %积分符号
 \RequirePackage{xcolor}%定义了一些颜色
+\RequirePackage{booktabs}%表格
+\RequirePackage{threeparttable}  %表格注释 
+\RequirePackage{enumitem}%列表
 
 
-
-
-
+%攻读学位期间论文发表环境
+\newlist{publications}{enumerate}{1}
+\setlist[publications]{label=[\arabic*],itemsep=3bp,resume,}
 
 
 
@@ -223,8 +226,8 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 %图片、表格标题的设置
 
-\captionsetup{font=normalsize,}%图、表等标题用小四号
-\captionsetup[sub]{font=normalsize}%图、表等标题用小四号
+\captionsetup{font=normalsize,justification=centering}%图、表等标题用小四号
+\captionsetup[sub]{font=normalsize,justification=centering}%图、表等标题用小四号
 \captionsetup{labelsep=space} %表的标号与名字间的分隔
 \DeclareCaptionFormat{my-tab}{\heiti #1#2#3\par}%表格标题特殊设置
 \captionsetup[table]{format=my-tab}%表格标题特殊设置
@@ -258,6 +261,8 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 %甚至可以用中文{\mynmfont\textcircled{中}}
 
 
+%\numberwithin{footnote}{part} %令脚注的计数器与部挂钩
+\counterwithout*{footnote}{chapter}%取消脚注计数器跟章节的关联
 
 
 %设置脚注样式
@@ -369,7 +374,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 %中文摘要
 \newcommand{\ZhAbstract}[2]{
-\thispagestyle{empty}
+\pagestyle{empty}
 \begin{center}
 	\heiti\zihao{-2}
 	~\\ %空一行
@@ -379,7 +384,6 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 	~\par %空一行
 	#1
 \par}
-
 ~\\ %空一行
 \noindent {\heiti 关键词}： #2
 \clearpage
@@ -390,7 +394,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 %英文摘要
 \newcommand{\EnAbstract}[2]{
-\thispagestyle{empty}
+\pagestyle{empty}
 \begin{center}
 	\zihao{2}
 	~\\ %空一行
@@ -400,7 +404,6 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 	~\par %空一行
 	#1
 \par}
-
 ~\\ %空一行
 \noindent {\textbf{Key words}}： #2 
 \clearpage
@@ -430,11 +433,12 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 %参考文献
 %需要使用bibtex引擎编译
 \newcommand{\PrintBibliography}{
-\bibliography{date/refer.bib}
 \phantomsection %让超链接能够正确链接，一般是加入目录用
 \addcontentsline{toc}{chapter}{参考文献}
 \clearpage
 \ctexset{chapter/numbering=false,} %设置相关科研成果目录和致谢的标题
+\ctexset{section/numbering=false,} %设置相关科研成果目录和致谢的标题
+\ctexset{subsection/numbering=false,} %设置相关科研成果目录和致谢的标题
 }
 
 

@@ -149,6 +149,148 @@
 \zhlipsum[8]
 
 
+
+\section{各种引用测试}
+
+\subsection{图片引用}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=.5]{example-image-c}
+		\caption{说明}\label{图片引用测试a}
+	\end{subfigure}
+	\hfil
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=.5]{example-image}
+		\caption{演示}\label{图片引用测试b}
+	\end{subfigure}
+	\caption{超长长长长长长长长长长长长\\ 长长长长长长长长长长长长长长长长长长长长长长长长\\ 长长长长长长长长长长长长长长长长长长长长标题，图片引用测试}\label{图片引用测试}
+\end{figure}
+
+参见图 \ref{图片引用测试} ，参见子图 \ref{图片引用测试a}，见子图\ref{图片引用测试b}。长标题可手动换行。
+
+
+
+\subsection{表格引用}
+
+
+\begin{table}[h!]
+	\centering
+	\caption{表格引用测试}\label{表格引用测试}
+	\begin{subtable}{0.4\linewidth}
+		\centering
+		\begin{tblr}{
+				row{odd} = {bg=azure8},
+				row{1}   = {bg=azure3, fg=white, font=\sffamily},
+			}
+			Alpha & Beta    & Gamma \\
+			Delta & Epsilon & Zeta  \\
+			Eta   & Theta   & Iota  \\
+			Kappa & Lambda  & Mu    \\
+			Nu Xi Omicron & Pi Rho Sigma & Tau Upsilon Phi \\
+		\end{tblr}
+		\caption{测试a}\label{表格引用测试a}
+	\end{subtable}
+	\hfill
+	\begin{subtable}{0.4\linewidth}
+		\centering
+		$\begin{tblr}{
+				column{1} = {mode=text},
+				column{3} = {mode=dmath},
+			}
+			\hline
+			Alpha   & \frac12 & \frac12 \\
+			Epsilon & \frac34 & \frac34 \\
+			Iota    & \frac56 & \frac56 \\
+			\hline
+		\end{tblr}$
+		\caption{测试b}\label{表格引用测试b}
+	\end{subtable}
+\end{table}
+
+
+参见表 \ref{表格引用测试}，参见子表\ref{表格引用测试a}，见\ref{表格引用测试b}。
+
+
+
+\subsection{注释引用}
+
+虚室生白\footnote{注释引用测试a \label{注释引用测试a} }，吉祥止止\footnote{注释引用测试b \label{注释引用测试b} }。参见注释 \ref{注释引用测试a}，见注释 \ref{注释引用测试b}。
+
+\subsection{公式引用}
+
+\begin{equation}\label{公式引用测式}
+	1+2=3
+\end{equation}
+公式 (\ref{公式引用测式}) 参见。 
+\begin{subequations}
+	\begin{align}
+		1+1&>1 \label{公式引用测式a}\\
+		1+2+3+4 & > 4 \label{公式引用测式b}
+	\end{align}
+\end{subequations}
+见公式 \ref{公式引用测式a}，见 \ref{公式引用测式b}。
+
+
+
+\section{图表注释测试}
+水厂共当而面三张，白家决空给意层般，单重总歼者新。每建马先口住月大，
+究平克满现易手，省否何安苏京。
+\subsection{表注释}
+\begin{table}[h!]
+	\centering
+	\caption{表头加注释 \protect\footnotemark ，表头添加参考文献\cite{叶普1993关于对瞬心的动量矩定理}}
+	\begin{tblr}{
+			hline{1,Z} = {2pt},
+			hline{2,Y} = {1pt},
+			hline{3-X} = {dashed},
+		}
+		Alpha   & Beta & Gamma   & Delta   \\
+		Epsilon & Zeta  & Eta     & Theta   \\
+		Iota    & Kappa & Lambda  & Mu      \\
+		Nu      & Xi    & Omicron & Pi      \\
+		Rho     & Sigma & Tau     & Upsilon \\
+		Phi     & Chi   & Psi     & Omega   \\
+	\end{tblr}
+\end{table}
+\footnotetext{表头加注释}
+
+\zhlipsum[2-3]
+
+
+\begin{table}[h!]
+	\caption{A table with notes}\label{tab:tablenotes}
+	\centering
+	\begin{threeparttable}
+		\begin{tabular}{*4{c}}\toprule
+			Table head\tnote{a} & Table head & Table head & Table head\tnote{b} \\ \midrule
+			Some values & Some values & Some values & Some values \\
+			Some values & Some values & Some values & Some values \\ \bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item[a] The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+			\item[b] The quick brown fox jumps over the lazy dog.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+
+\subsection{图片注释}
+
+\begin{figure}[h!]
+	\centering                        
+	\includegraphics[width=0.3\textwidth]{example-image-duck}
+	\caption[frog]{frog \footnotemark 添加参考文献\cite{2003张量分析} }
+	\label{fig:pic1}
+\end{figure}
+\footnotetext{frog图片注释测试}
+
+
+
 \section{理论计算}%二级标题
 
 \zhlipsum[2]
