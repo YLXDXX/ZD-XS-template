@@ -16,3 +16,11 @@
 - 系统：Debian 11
 - 发行版：TexLive 2022
 - 编辑器：TeXStudio
+
+#### 其它相关
+
+- 西藏大学硕士论文模板：https://gitee.com/ylxdxx/ZD-SS-template
+- 西藏大学课程论文模板：https://gitee.com/ylxdxx/ZDCourse
+
+
+
