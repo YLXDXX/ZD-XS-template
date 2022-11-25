@@ -323,7 +323,7 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 \thispagestyle{empty}
 \begin{center}
 	\centering 
-\includegraphics{picture/西藏在学-名字.png}\\\vspace{1cm}
+\includegraphics{picture/西藏大学-名字.png}\\\vspace{1cm}
 \includegraphics{picture/西藏大学-校徽.png}\\\vspace{1.5cm}
 {\zihao{1}\songti\textbf{\the\Type}}\\\vspace{3cm}
 \zihao{3}
