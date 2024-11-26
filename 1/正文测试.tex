@@ -4,23 +4,38 @@
 
 \zhlipsum[1]
 
+
+
+
+
+\section{生僻字测试}
+
+正文基本字体是宋体，生僻字利用宋体的扩展B区（SimSun-ExtB）来显示，基于 FallBack 技术，生僻字测试如下：
+𠁼	𠁽	𠁾	𠁿 𠃰	𠃱	𠃲	𠃳	𠃴	𠃵	𠃶	𠃷	𠃸	𠃹	𠃺	𠃻	𠃼	𠃽	𠃾	𠃿  𠅠	𠅡	𠅢	𠅣	𠅤	𠅥	𠅦	𠅧	𠅨	𠅩	𠅪	𠅫	𠅬	𠅭	𠅮	𠅯  𠇠	𠇡	𠇢	𠇣	𠇤	𠇥	𠇦	𠇧	𠇨	𠇩	𠇪	𠇫	𠇬	𠇭	𠇮	𠇯 𠋠	𠋡	𠋢	𠋣	𠋤	𠋥	𠋦	𠋧	𠋨	𠋩	𠋪	𠋫	𠋬	𠋭	𠋮	𠋯  𠡰	𠡱	𠡲	𠡳	𠡴	𠡵	𠡶	𠡷	𠡸	𠡹	𠡺	𠡻	𠡼	𠡽	𠡾	𠡿
+
+
+
+\zhlipsum[1]
+
 \section{表格测试}
 
-\begin{table}[h!]
-\centering 
-\caption{表格示例}
-\begin{tblr}{lccr}
-	\hline
-	Alpha   & Beta  & Gamma  & Delta \\
-	\hline
-	Epsilon & Zeta  & Eta    & Theta \\
-	\hline
-	Iota    & Kappa & Lambda & Mu    \\
-	\hline
-\end{tblr}
-\end{table} 
+\zhlipsum[1]
 
-注意，在表格的正文部分，其中的标题应：中文需用黑体「\verb+\heiti+」，英文需要加粗「\verb+\textbf{text}+」
+\begin{table}[h!]
+	\centering 
+	\caption{三线表示例}
+	\begin{tblr}{lccr}
+		\toprule
+		Alpha   & Beta  & Gamma  & Delta \\
+		\midrule
+		Epsilon & Zeta  & Eta    & Theta \\
+		Iota    & Kappa & Lambda & Mu    \\
+		OK    & Good & Nice & Well    \\
+		\bottomrule
+	\end{tblr}
+\end{table}
+
+
 
 
 
@@ -28,15 +43,18 @@
 
 \section{参考文献测试}
 
-张三\cite{叶普1993关于对瞬心的动量矩定理}提出。
-张三\cite{爱因斯坦文集2009}提出。
-张三\cite{叶普1993关于对瞬心的动量矩定理}提出。
-张三\cite{叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}提出。
+可以参看 \parencite{Weng:2017jyh,Biro:2017flp,Hod:2017ssh}。
+张三 \cite{叶普1993关于对瞬心的动量矩定理}提出。
+张三 \parencite{爱因斯坦文集2009}提出。
+张三 \cite{叶普1993关于对瞬心的动量矩定理}提出。
+张三 \cite{叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}提出。
 海上生明月\footnote{脚注测试1}，
 海上生明月\footnote{脚注测试2，脚注测试2}。
-文献\citestyle{numbers}\cite{2003张量分析}中说明。
-文献\citestyle{numbers}\cite{叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}中说明。
-张三\citestyle{super}\cite{爱因斯坦文集2009,叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}提出。
+文献 \cite{2003张量分析}中说明。
+文献 \cite{叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}中 说明。
+张三 \parencite{爱因斯坦文集2009,叶普1993关于对瞬心的动量矩定理,2003张量分析,lanczos1986variational}提出。
+
+可以参看\cite{Litvinova:2017jnd,Li:2017kdj}。
 
 
 
@@ -56,17 +74,7 @@
 海上生明月\footnote{脚注测试1}
 海上生明月\footnote{脚注测试2，脚注测试2}
 海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
-海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
-海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
-海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
-海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
-海上生明月\footnote{脚注测试1}
-海上生明月\footnote{脚注测试2，脚注测试2}
+
 
 \subsection{理论预言}%三级标题
 
@@ -81,6 +89,7 @@
 
 \chapter{实验装置原理}%大标题
 
+\zhlipsum[1]
 
 \section{图片测试}
 
@@ -225,14 +234,14 @@
 \begin{equation}\label{公式引用测式}
 	1+2=3
 \end{equation}
-公式 (\ref{公式引用测式}) 参见。 
+公式 \eqref{公式引用测式} 参见。 
 \begin{subequations}
 	\begin{align}
 		1+1&>1 \label{公式引用测式a}\\
 		1+2+3+4 & > 4 \label{公式引用测式b}
 	\end{align}
 \end{subequations}
-见公式 \ref{公式引用测式a}，见 \ref{公式引用测式b}。
+见公式 \eqref{公式引用测式a}，见 \eqref{公式引用测式b}。
 
 
 
@@ -280,7 +289,7 @@
 
 
 \subsection{图片注释}
-
+\zhlipsum[2]
 \begin{figure}[h!]
 	\centering                        
 	\includegraphics[width=0.3\textwidth]{example-image-duck}

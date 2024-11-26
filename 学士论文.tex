@@ -1,14 +1,7 @@
 \documentclass{ZDXS}
-%载入西藏大学本科毕业论文模板
 
 
-%在写作中，自己需要用到的一些宏包
-%在此处导言区加载使用
-%例
-%\usepackage{CJKspace}
-
-
-
+\addbibresource[location=local]{date/refer.bib} %参考文献源文件
 
 
 \begin{document}
@@ -17,30 +10,29 @@
 %行内的直接写 \verb 命令
 
 
-
-%封面信息
-%跟据自己情况填写
-
-
-\Type{本科生毕业论文} %本科生毕业论文 或者 本科生毕业设计
-\YanXi{理学院} %院系
-\ZhuanYe{2015级物理一班} %专业年级
-\TiMu{一种新型的中微子捕获装置} %题目
-\XingMing{王小二} %姓名
-\XueHao{15413100} %学号
-\JiaoShi{厉老师} %指导教师
-\ZhiCheng{教授} %职称
-\ShiJian{2019年5月13日} %完成时间
-
+%基本信息，跟据自己情况填写
+\BasicInfomation{
+	thesis_type = {本科生毕业论文}, %本科生 毕业论文/毕业设计
+	thesis_title_zh = {烤地瓜技术流程}, % 论文题目，中文
+	student_name = {李四}, % 学生姓名
+	student_number = {21413100}, %学生学号
+	teacher_name = {张三},  % 导师姓名
+	teacher_title = {教授},  % 导师职称
+	college = {理学院},  % 学院
+	major = {2021级物理一班}, % 专业年级
+	complete_date = {2024年11月09日},  % 完成日期
+	print_version = {false}, %是否生成打印版本的PDF: true/false，若为真，则在生成 PDF 时会自动添加空白页，以适应双面打印的需要
+}
 
 
 
-%封面
-\cover %用于生成封面
+
+
+\CoverDraw %封面绘制
 
 
 %郑重声明
-\statement %用于生成声明
+\AuthorStatement %作者声明
 
 
 
@@ -52,8 +44,7 @@
 
 
 
-%目录
-\mulucreat
+\TOCautoCreate %目录自动创建
 
 
 
@@ -69,10 +60,7 @@
 
 
 
-%参考文献
-%参考文献放置位置为 date/refer.bib
-\PrintBibliography %参考文献辅助，匆删
-\bibliography{date/refer.bib}
+\RefautoCreate %参考文献自动创建
 
 
 

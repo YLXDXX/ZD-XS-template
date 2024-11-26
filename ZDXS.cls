@@ -1,5 +1,53 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ZDXS}[shui 西藏大学本科毕业论文模板]
+%%% % -*- coding: utf-8 -*-
+%%% ----------------------------------------------------------------------------
+%%% ZDSS: 西藏大学本科毕业论文模板
+%%% Copyright : 2021-2024 (c) <ylxdxx@qq.com>
+%%% Repository: https://gitee.com/ylxdxx/ZD-XS-template
+%%% License   : The LaTeX Project Public License 1.3c
+%%% ----------------------------------------------------------------------------
+
+
+
+%格式声名
+\NeedsTeXFormat{LaTeX2e}[2021-11-15]
+
+\RequirePackage{expl3}
+
+
+%This is a special version of the standard \ProvidesPackage macro, 
+%which will automatically turn on LaTeX3 programming syntax and 
+%more importantly turn it off at the end of the package. 
+%It also deals properly with nested package loading, and
+%so is the recommended way to use LaTeX3 syntax inside LaTeX2e packages.
+\ProvidesExplPackage{ZDSS} % Package name
+{2024-11-26} % Release date
+{0.1} % Release version
+{西藏大学本科毕业论文模板} % Description
+
+%\debug_on:n{all}
+
+
+%
+% 定义变量
+%
+
+%基本信息
+\tl_new:N   \l_ZD_thesis_type_tl %本科生 毕业论文/毕业设计
+\tl_new:N   \l_ZD_college_tl % 学院
+\tl_new:N   \l_ZD_major_tl % 专业
+\tl_new:N   \l_ZD_thesis_title_zh_tl % 论文题目，中文
+\tl_new:N   \l_ZD_student_name_tl % 学生姓名
+\tl_new:N   \l_ZD_student_number_tl % 学生学号
+\tl_new:N   \l_ZD_teacher_name_tl % 导师姓名
+\tl_new:N   \l_ZD_teacher_title_tl % 导师职称
+\tl_new:N   \l_ZD_complete_date_tl % 完成日期
+
+
+%功能控制
+\bool_new:N   \l_ZD_print_version_bool %是否生成打印版本PDF
+
+
+
 
 %基本设置
 
@@ -14,33 +62,40 @@
 
 
 
-%封面信息变量
-\newtoks\Type 
-\newtoks\YanXi
-\newtoks\ZhuanYe
-\newtoks\TiMu
-\newtoks\XingMing
-\newtoks\XueHao
-\newtoks\JiaoShi
-\newtoks\ZhiCheng
-\newtoks\ShiJian
 
-
-
-
+%
 %字体设置
-
+%
 
 % 英文字体配置部分
 %\setmainfont{Times New Roman}%英文正文
-\setmainfont{times.ttf}[Path = fonts/,BoldFont = timesbd.ttf ,ItalicFont = timesi.ttf ,BoldItalicFont = timesbi.ttf ]
+\setmainfont{times.ttf}[Path = fonts/, BoldFont = timesbd.ttf, ItalicFont = timesi.ttf, BoldItalicFont = timesbi.ttf]
 
 %\setsansfont{Source Sans Pro}%英文无衬线
 %\setmonofont{Source Code Pro}%英文等宽
-%这里会影响公式字体出问题，需用fontspec的no-math选项解决
-
+%这里会影响公式字体出问题，需用fontspec的no-math选项解决，见上
+%
 % 中文字体配置部分
-\setCJKmainfont[AutoFakeBold=true,AutoFakeSlant=true]{宋体}%中文正文
+%
+
+\xeCJKsetup{AutoFallBack=true} %用于生僻字显示
+
+%自定义字体命令
+\setCJKfamilyfont{WinSongTi}[Path = fonts/,AutoFakeBold=3,AutoFakeSlant=true,
+							FallBack={[Path = fonts/,AutoFakeBold=3,AutoFakeSlant=true,]{simsunb.ttf}},]{simsun.ttc} %宋体
+\setCJKfamilyfont{WinKaiTi}[Path = fonts/,AutoFakeBold=3,AutoFakeSlant=true,]{simkai.ttf} %楷体
+\setCJKfamilyfont{WinHeiTi}[Path = fonts/,AutoFakeSlant=true,]{simhei.ttf} %黑体
+%相要使用的话用 \CJKfamily{WinSongTi} 即可
+
+%\setCJKmainfont[AutoFakeBold=true,AutoFakeSlant=true]{宋体}%中文正文
+\setCJKmainfont[Path = fonts/,AutoFakeBold=3,AutoFakeSlant=true,
+				FallBack={[Path = fonts/,AutoFakeBold=3,AutoFakeSlant=true,]{simsunb.ttf}},]{simsun.ttc} %正文宋体
+
+%重定义 ctexbook 中一些字体命令
+\RenewDocumentCommand{\songti}{}{\CJKfamily{WinSongTi}}
+\RenewDocumentCommand{\kaishu}{}{\CJKfamily{WinKaiTi}}
+\RenewDocumentCommand{\heiti}{}{\CJKfamily{WinHeiTi}}
+
 %\emph \textbf \bfseries  \textit \itshape 等对中文有效
 %也就有了中文对应的粗体和斜体
 %\setCJKsansfont{黑体}%中文无衬线
@@ -48,24 +103,10 @@
 
 
 
-
-%自定义字体命令
-%\setCJKfamilyfont{boldsong}{Source Han Serif SC Heavy}
-%\setCJKfamilyfont{hwxk}{HYXiaoLiShuJ} %使用华文行楷字体
-%\newcommand{\myfonta}{\CJKfamily{hwxk}}
-
-%\addbibresource{date/refer.bib} %参考文献
-
-\RequirePackage{graphicx} %图片png、jpg等
-\RequirePackage{svg} %svg图片
-\graphicspath{{picture/}} %图片存放目录,可直接引用
-
-
-
-
 %单个汉字字宽 \ccwd
 %em、 ex
-%使用粗体：\bfseries 或者 \textbf{text} ，由于windows字体的原因，若使用加粗命令，则会变成黑体，设置成其它字体即可，例如 fontset=fontset
+%使用粗体：\bfseries 或者 \textbf{text} 
+%由于windows字体的原因，若使用加粗命令，则会变成黑体，设置成其它字体即可，例如 fontset=fontset
 
 
 
@@ -122,8 +163,13 @@
 
 
 %基本宏包
-\RequirePackage{tabularray}%表格
-\RequirePackage{tikz}%绘图
+\RequirePackage{tabularray} % 表格
+%\RequirePackage{booktabs} %表格
+\UseTblrLibrary{booktabs} % 在 tabularray 中使用传统三线表 \toprule \midrule \bottomrule
+\RequirePackage{threeparttable}  %表格注释 
+\RequirePackage{tikz} % 绘图
+\RequirePackage{graphicx} %图片png、jpg等
+\RequirePackage{svg} %svg图片
 \RequirePackage{mathdots} %添加斜向省略号
 \RequirePackage{xcolor}%定义了一些颜色
 \RequirePackage{enumerate} %列项序号编号
@@ -136,18 +182,18 @@
 \RequirePackage{amsfonts} %用来输入各种符号的特殊形态，例如字母的花体、空心体等，配合amssymb使用
 \RequirePackage{mathrsfs} %数学中的花体(不是太花的)
 \RequirePackage[upright=true]{derivative}%分数导数微分偏微分增量改变量等 
-\RequirePackage{tabularray} %表格
- \RequirePackage{braket} %量子算符宏包 
+\RequirePackage{braket} %量子算符宏包 
 \RequirePackage{esint} % various fancy integral symbols %积分符号
-\RequirePackage{xcolor}%定义了一些颜色
-\RequirePackage{booktabs}%表格
-\RequirePackage{threeparttable}  %表格注释 
 \RequirePackage{enumitem}%列表
+
+\RequirePackage{zhlipsum}%中文假文\zhlipsum[2-4]
+\RequirePackage{lipsum}%英文徦文
 
 
 %攻读学位期间论文发表环境
-\newlist{publications}{enumerate}{1}
-\setlist[publications]{label=[\arabic*],itemsep=3bp,resume,}
+%\newlist{publications}{enumerate}{1}
+%\setlist[publications]{label=[\arabic*],itemsep=3bp,resume,}
+%已使用参考文献的 refsection 环境替代
 
 
 
@@ -297,94 +343,154 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 
 
+%
 %参考文献
-\RequirePackage[sort&compress]{gbt7714}
-\bibliographystyle{gbt7714-numerical}%选择参考文献样式「顺序编码制」
-%需要使用bibtex引擎编译
+%
 
+%旧方法
+%参考 https://ctan.org/pkg/gbt7714 
+%\RequirePackage[sort&compress]{gbt7714}
+%\bibliographystyle{gbt7714-numerical}%选择参考文献样式「顺序编码制」
+%需要使用 bibtex 引擎编译
+%\bibliography{date/refer.bib} %参考文献相关文件，此句在需要生成参考文献的地方加入
 
-
-
-
-
-\RequirePackage{zhlipsum}%中文假文\zhlipsum[2-4]
-\RequirePackage{lipsum}%英文徦文
-
+%新方法
+%参考 https://ctan.org/pkg/biblatex-gb7714-2015 
+\RequirePackage[backend=biber, style=gb7714-2015, gbalign=gb7714-2015, gbpub=true]{biblatex}
+%\addbibresource[location=local]{date/refer.bib} %参考文献源文件
+\setlength{\biblabelsep}{3mm} %参考文标签和内容间的间隔
+%需使用 biber 引擎编译
+%\printbibliography[heading=bibliography,title=参考文献] %打印参考文献表，此句在需要生成参考文献的地方加入
 
 
 
 %
-%下面是自定义命令部分
+%
+%下面是本模板自定义的一些功能与命令
+%采用LaTeX3语法编写
+%
 %
 
 
-%封面
-\newcommand{\cover}{
+%基本信息键值对
+\keys_define:nn { ZD_basic_information }
+{
+    thesis_type .tl_set:N  = \l_ZD_thesis_type_tl,
+    thesis_title_zh .tl_set:N  = \l_ZD_thesis_title_zh_tl,
+    student_name .tl_set:N  = \l_ZD_student_name_tl,
+    student_number .tl_set:N  = \l_ZD_student_number_tl,
+    teacher_name .tl_set:N = \l_ZD_teacher_name_tl,
+    teacher_title .tl_set:N = \l_ZD_teacher_title_tl,
+    college .tl_set:N = \l_ZD_college_tl,
+    major .tl_set:N = \l_ZD_major_tl,
+    complete_date .tl_set:N = \l_ZD_complete_date_tl,
+    
+    print_version .bool_set:N = \l_ZD_print_version_bool,
+    
+    % 初始值
+    thesis_type .initial:n  = { 本科生毕业论文 },
+    print_version .initial:n = {false},
+}
+
+
+%文档中基本信息填充名令
+\NewDocumentCommand \BasicInfomation { m }
+{
+    \keys_set:nn { ZD_basic_information } { #1 }
+}
+
+
+%封面绘制
+\NewDocumentCommand \CoverDraw { }
+{
 \thispagestyle{empty}
 \begin{center}
-	\centering 
+\centering 
 \includegraphics{picture/西藏大学-名字.png}\\\vspace{1cm}
 \includegraphics{picture/西藏大学-校徽.png}\\\vspace{1.5cm}
-{\zihao{1}\songti\textbf{\the\Type}}\\\vspace{3cm}
+{\zihao{1}\songti\textbf{ \tl_use:N \l_ZD_thesis_type_tl }}\\\vspace{3cm}
 \zihao{3}
 \songti\bfseries
 \begin{tblr}{
 			colspec={cm{0.5\ccwd}ccm{0.5\ccwd}c},
 			%hline{1,7} = {1pt,solid},
+			rows = {abovesep=8pt,belowsep=-1pt},
 		} 
-		\makebox[4em][s]{{\zihao{3}院系}}&：& \SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{\the\YanXi}} &&& \\\cline{3-6}
-		\makebox[4em][s]{{\zihao{3}专业年级}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{\the\ZhuanYe}}&&& \\\cline{3-6}
-		\makebox[4em][s]{{\zihao{3}题目}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{\the\TiMu}}&&& \\\cline{3-6}
-		\makebox[4em][s]{{\zihao{3}学生姓名}}&：& {\zihao{4}\makebox[6\ccwd][c]{\the\XingMing}}&学号&：&{\zihao{4}\makebox[4\ccwd][c]{\the\XueHao}} \\\cline{3-3}\cline{6-6}
-		\makebox[4em][s]{{\zihao{3}指导教师}}&：&{\zihao{4}\makebox[6\ccwd][c]{\the\JiaoShi}}&职称&：&{\zihao{4}\makebox[4\ccwd][c]{\the\ZhiCheng}} \\\cline{3-3}\cline{6-6}
-		\makebox[4em][s]{{\zihao{3}完成时间}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{\the\ShiJian}}&&& \\\cline{3-6}
+		\makebox[4em][s]{{\zihao{3}院系}}&：& \SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{ \tl_use:N \l_ZD_college_tl }} &&& \\\cline{3-6}
+		\makebox[4em][s]{{\zihao{3}专业年级}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{ \tl_use:N \l_ZD_major_tl }}&&& \\\cline{3-6}
+		\makebox[4em][s]{{\zihao{3}题目}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{ \tl_use:N \l_ZD_thesis_title_zh_tl }}&&& \\\cline{3-6}
+		\makebox[4em][s]{{\zihao{3}学生姓名}}&：& {\zihao{4}\makebox[6\ccwd][c]{ \tl_use:N \l_ZD_student_name_tl }}&学号&：&{\zihao{4}\makebox[4\ccwd][c]{  \tl_use:N \l_ZD_student_number_tl  }} \\\cline{3-3}\cline{6-6}
+		\makebox[4em][s]{{\zihao{3}指导教师}}&：&{\zihao{4}\makebox[6\ccwd][c]{ \tl_use:N \l_ZD_teacher_name_tl }}&职称&：&{\zihao{4}\makebox[4\ccwd][c]{  \tl_use:N \l_ZD_teacher_title_tl  }} \\\cline{3-3}\cline{6-6}
+		\makebox[4em][s]{{\zihao{3}完成时间}}&：&\SetCell[c=4]{c} {\zihao{4}\makebox[15\ccwd][c]{ \tl_use:N \l_ZD_complete_date_tl }}&&& \\\cline{3-6}
 \end{tblr}
-
 \end{center}
 \clearpage
-%\newpage\null\thispagestyle{empty}\newpage
+
+\bool_if:NTF {\l_ZD_print_version_bool}
+{
+	%若为真，则需加入空白页
+	\thispagestyle{empty} \null \newpage % 插入空白页
 }
+{
+	\newpage
+}
+
+}
+
 
 
 
 
 %声明
-\newcommand{\statement}{
+\NewDocumentCommand \AuthorStatement { }
+{
 \thispagestyle{empty}
 \begin{center}
 	\songti\zihao{2}
-	~\\
-	~\\ %空二行
-	\textbf{郑 \space 重 \space 声 \space 明}
+	\nobreakspace\\
+	\nobreakspace\\ %空二行
+	\textbf{郑 \hspace{0.5\ccwd} 重 \hspace{0.5\ccwd} 声 \hspace{0.5\ccwd} 明}
 \end{center}
-
+\par
 {\zihao{4}
-{\linespread{2.0}\selectfont            %2倍行距
-\vspace*{1.8cm}本人呈交的学位论文，是在导师的指导下，独立进行研究工作所取得的成果，所有数据、图片资料真实可靠。尽我所知，除文中已经注明引用的内容外，本学位论文的研究成果不包含他人享有著作权的内容。对本论文所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确的方式标明。本学位论文的知识产权归属于培养单位。
+{
+\linespread{1.92}\selectfont            %2倍行距
+\vspace*{1cm}
+本人呈交的学位论文，是在导师的指导下，独立进行研究工作所取得的成果，所有数据、图片资料真实可靠。尽我所知，除文中已经注明引用的内容外，本学位论文的研究成果不包含他人享有著作权的内容。对本论文所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确的方式标明。本学位论文的知识产权归属于培养单位。
 \par}
 \vspace{4.5cm}
 \noindent 本人签名：\underline{\hspace{44.45mm}} \hfill 日期：\underline{\hspace{44.45mm}}%
 }
 \clearpage
-%\newpage\null\thispagestyle{empty}\newpage
+
+\bool_if:NTF {\l_ZD_print_version_bool}
+{
+	%若为真，则需加入空白页
+	\thispagestyle{empty} \null \newpage % 插入空白页
+}
+{
+	\newpage
+}
+
 }
 
 
 
 
 %中文摘要
-\newcommand{\ZhAbstract}[2]{
+\NewDocumentCommand \ZhAbstract {mm}
+{
 \pagestyle{empty}
 \begin{center}
 	\heiti\zihao{-2}
-	~\\ %空一行
+	\nobreakspace\\ %空一行
 	摘\texttt{\char32}要 %这里只要一个空格既可，中英文会自动产生一个空格
 \end{center}
 {\linespread{1.5}\selectfont %1.5倍行距
-	~\par %空一行
+	\nobreakspace\par %空一行
 	#1
 \par}
-~\\ %空一行
+\nobreakspace\\ %空一行
 \noindent {\heiti 关键词}： #2
 \clearpage
 }
@@ -393,18 +499,19 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 
 %英文摘要
-\newcommand{\EnAbstract}[2]{
+\NewDocumentCommand \EnAbstract { mm }
+{
 \pagestyle{empty}
 \begin{center}
 	\zihao{2}
-	~\\ %空一行
+	\nobreakspace\\ %空一行
 	\textbf{Abstract}
 \end{center}
 {\linespread{1.5}\selectfont %1.5倍行距
-	~\par %空一行
+	\nobreakspace\par %空一行
 	#1
 \par}
-~\\ %空一行
+\nobreakspace\\ %空一行
 \noindent {\textbf{Key words}}： #2 
 \clearpage
 }
@@ -413,7 +520,9 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 %目录
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}} 
-\newcommand{\mulucreat}{
+%目录自动创建
+\NewDocumentCommand \TOCautoCreate {  }
+{
 	\pagestyle{empty}
 	\tableofcontents
 	\clearpage
@@ -432,14 +541,20 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 %参考文献
 %需要使用bibtex引擎编译
-\newcommand{\PrintBibliography}{
+\NewDocumentCommand \RefautoCreate {  }
+{
+\clearpage
 \phantomsection %让超链接能够正确链接，一般是加入目录用
 \addcontentsline{toc}{chapter}{参考文献}
+\printbibliography[heading=bibliography,title=参考文献] %打印参考文献表
 \clearpage
-\ctexset{chapter/numbering=false,} %设置相关科研成果目录和致谢的标题
-\ctexset{section/numbering=false,} %设置相关科研成果目录和致谢的标题
-\ctexset{subsection/numbering=false,} %设置相关科研成果目录和致谢的标题
-\ctexset{subsubsection/numbering=false,} %设置相关科研成果目录和致谢的标题
+%设置相关科研成果目录和致谢的标题
+\ctexset{
+chapter/numbering=false,
+section/numbering=false,
+subsection/numbering=false,
+subsubsection/numbering=false,
+}
 }
 
 
@@ -456,20 +571,26 @@ contentsname = 目\texttt{\char32}录,%这里只要一个空格既可，中英�
 
 
 %附录
-\newcommand{\Appendix}{
+
+\NewDocumentCommand{\Appendix}{ }
+{
 \appendix%附录开始
 %附录前面需加入\appendix命令
 \ctexset{
+chapter/numbering=true,
 section = {
-	name = {附,\ },
-	number =\Alph{chapter}\arabic{section},
+	name = {,\ },
+	number =\Alph{chapter}.\arabic{section},
+	numbering=true,
 },
 subsection = {
-	name = {附,\ },
-	number =\Alph{chapter}\arabic{section}.\arabic{subsection},
+	name = {,\ },
+	number =\Alph{chapter}.\arabic{section}.\arabic{subsection},
+	numbering=true,
 },
 subsubsection = {
-	name = {附,\ },
-	number =\Alph{chapter}\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+	name = {,\ },
+	number =\Alph{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+	numbering=true,
 },}
 }
